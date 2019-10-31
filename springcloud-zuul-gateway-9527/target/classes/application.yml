@@ -1,0 +1,28 @@
+server:
+  port: 9527
+spring:
+  application:
+    name: springcloud-zuul-gateway
+
+eureka:
+  client:
+    service-url:
+      # defaultZone: http://localhost:7001/eureka
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+    instance:
+      instance-id: gateway-9527.com  #修改eureka暴露的微服务名称
+      refer-ip-address: true    #访问路径显示ip地址
+
+
+
+info:
+  app.name: atguigu-servicecloud
+  company.name: www.atguigu.com
+  bulid.artifactId: springcloud-zuul-gateway-9527
+  bulid.version: 1.0-SNAPSHOT
+zuul:
+  ignored-services: "*"
+  prefix: /atguigu
+  routes:
+    mydept.serviceId: springcloud2-dept
+    mydept.path: /mydept/**
